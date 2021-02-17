@@ -1,0 +1,5 @@
+# Backup Bitwarden data hourly.
+@hourly SQLITE3=/usr/local/bin/sqlite3 ${HOME}/bwrs/backup/backup.sh >${HOME}/bwrs/backup/backup.log 2>&1
+
+# Purge old local backups.
+@daily find "${HOME}/bwrs/backup/archives" -name 'bitwarden-*.tar.*' -mtime +14 -delete

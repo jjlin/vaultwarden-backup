@@ -1,0 +1,11 @@
+#!sh
+
+GPG_CIPHER_ALGO=AES128
+GPG_PASSPHRASE='hunter2'
+
+RCLONE_DESTS=(
+    # Backblaze B2 (https://rclone.org/b2/)
+    b2:bitwarden
+    # Oracle Cloud Infrastructure (https://docs.oracle.com/en/solutions/move-data-to-cloud-storage-using-rclone/)
+    oci:bitwarden
+)
