@@ -11,8 +11,8 @@ general purpose):
    number of days.
 
 3. Upload encrypted copies of the backup archives to one or more object
-   storage services using Rclone. The retention policy is configured at the
-   storage service level.
+   storage services using [rclone](https://rclone.org/). The retention policy
+   is configured at the storage service level.
 
 Feel free to use or modify this setup to fit your own needs.
 
@@ -31,7 +31,7 @@ Feel free to use or modify this setup to fit your own needs.
    archives to cloud storage.
 
 5. An account at one or more cloud storage services
-   [supported](https://rclone.org/overview/) by Rclone. If you don't have one
+   [supported](https://rclone.org/overview/) by rclone. If you don't have one
    yet, [Backblaze B2](https://www.backblaze.com/b2/cloud-storage.html)
    offers 10 GB of free object storage.
 
@@ -60,8 +60,8 @@ Feel free to use or modify this setup to fit your own needs.
       plaintext, it definitely should not be your Bitwarden master passphrase
       or anything similar.
 
-   2. Change `RCLONE_DESTS` to your list of Rclone destinations. You'll have
-      to [configure](https://rclone.org/docs/) Rclone appropriately first.
+   2. Change `RCLONE_DESTS` to your list of rclone destinations. You'll have
+      to [configure](https://rclone.org/docs/) rclone appropriately first.
 
 3. Modify the `backup/crontab` file as needed.
 
@@ -91,7 +91,7 @@ Feel free to use or modify this setup to fit your own needs.
 If everything is working properly, you should see the following:
 
 1. Backup archives generated under `backup/archives`.
-2. Encrypted backup archives uploaded to your configured Rclone destination(s).
+2. Encrypted backup archives uploaded to your configured rclone destination(s).
 3. A log of the last backup at `backup/backup.log`.
 
 For example:
