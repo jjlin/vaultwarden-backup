@@ -39,7 +39,13 @@ until ${SQLITE3} "file:${DATA_DIR}/${DB_FILE}?mode=ro" ".backup '${BACKUP_DIR_PA
     sleep 1
 done
 
-cp -a "${DATA_DIR}"/{attachments,config.json,rsa_key.*} "${BACKUP_DIR_PATH}"
+backup_files=()
+for f in attachments config.json rsa_key.der rsa_key.pem rsa_key.pub.der; do
+    if [[ -e "${DATA_DIR}"/$f ]]; then
+        backup_files+=("${DATA_DIR}"/$f)
+    fi
+done
+cp -a "${backup_files[@]}" "${BACKUP_DIR_PATH}"
 tar -cJf "${BACKUP_FILE_PATH}" -C "${BACKUP_ROOT}" "${BACKUP_DIR_NAME}"
 rm -rf "${BACKUP_DIR_PATH}"
 md5sum "${BACKUP_FILE_PATH}"
