@@ -16,6 +16,11 @@ general purpose):
 
 Feel free to use or modify this setup to fit your own needs.
 
+Note: This single-archive backup scheme isn't space-efficient if your vault
+includes large file attachments, as they will be re-uploaded with each backup.
+If this is an issue, you might consider modifying the script to use
+[restic](https://restic.net/) instead.
+
 ## Prerequisites
 
 1. A standard Unix-like (preferably Linux) host running bitwarden_rs. I don't
