@@ -4,13 +4,13 @@ set -ex
 
 # Use the value of the corresponding environment variable, or the
 # default if none exists.
-: ${BITWARDEN_ROOT:="${HOME}/bwrs"}
+: ${VAULTWARDEN_ROOT:="${HOME}/vaultwarden"}
 : ${SQLITE3:="/usr/bin/sqlite3"}
 : ${RCLONE:="/usr/local/bin/rclone"}
 
 DATA_DIR="data"
-BACKUP_ROOT="${BITWARDEN_ROOT}/backup"
-BACKUP_DIR_NAME="bitwarden-$(date '+%Y%m%d-%H%M')"
+BACKUP_ROOT="${VAULTWARDEN_ROOT}/backup"
+BACKUP_DIR_NAME="vaultwarden-$(date '+%Y%m%d-%H%M')"
 BACKUP_DIR_PATH="${BACKUP_ROOT}/${BACKUP_DIR_NAME}"
 BACKUP_FILE_DIR="archives"
 BACKUP_FILE_NAME="${BACKUP_DIR_NAME}.tar.xz"
@@ -19,7 +19,7 @@ DB_FILE="db.sqlite3"
 
 source "${BACKUP_ROOT}"/backup.conf
 
-cd "${BITWARDEN_ROOT}"
+cd "${VAULTWARDEN_ROOT}"
 mkdir -p "${BACKUP_DIR_PATH}"
 
 # Back up the database using the Online Backup API (https://www.sqlite.org/backup.html)

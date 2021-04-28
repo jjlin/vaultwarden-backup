@@ -1,13 +1,15 @@
 ## Overview
 
-This repo contains my automated setup for SQLite-based bitwarden_rs backups.
+**Note: Vaultwarden was formerly known as bitwarden_rs.**
+
+This repo contains my automated setup for SQLite-based Vaultwarden backups.
 It's designed solely to meet my own backup requirements (i.e., not to be
 general purpose):
 
-1. Generate a single archive with a complete backup of all bitwarden_rs data
+1. Generate a single archive with a complete backup of all Vaultwarden data
    and config on a configurable schedule.
 
-2. Retain backup archives on the local bitwarden_rs host for a configurable
+2. Retain backup archives on the local Vaultwarden host for a configurable
    number of days.
 
 3. Upload encrypted copies of the backup archives to one or more object
@@ -23,7 +25,7 @@ If this is an issue, you might consider modifying the script to use
 
 ## Prerequisites
 
-1. A standard Unix-like (preferably Linux) host running bitwarden_rs. I don't
+1. A standard Unix-like (preferably Linux) host running Vaultwarden. I don't
    know much about Synology or other such environments.
 
 2. A [cron](https://en.wikipedia.org/wiki/Cron) daemon. This is used to run
@@ -44,12 +46,12 @@ If this is an issue, you might consider modifying the script to use
 
 ## Usage
 
-1. Start by cloning this repo to the directory containing your bitwarden_rs
+1. Start by cloning this repo to the directory containing your Vaultwarden
    data directory, under the name `backup`. In my setup, it looks like this:
 
-       $HOME/bwrs  # Top-level bitwarden_rs directory
-       ├── backup  # This backup repo
-       └── data    # bitwarden_rs data directory
+       $HOME/vaultwarden  # Top-level Vaultwarden directory
+       ├── backup         # This backup repo
+       └── data           # Vaultwarden data directory
 
 2. Copy the `backup.conf.template` file to `backup.conf`.
 
@@ -70,10 +72,10 @@ If this is an issue, you might consider modifying the script to use
 
 3. Modify the `backup/crontab` file as needed.
 
-   1. If `$HOME/bwrs` isn't your top-level bitwarden_rs directory, adjust the
-      paths in this file accordingly. You would also need to set the
-      `BITWARDEN_ROOT` variable to your top-level directory, or modify the
-      default value in `backup.sh`.
+   1. If `$HOME/vaultwarden` isn't your top-level Vaultwarden directory,
+      adjust the paths in this file accordingly. You would also need to set
+      the `VAULTWARDEN_ROOT` variable to your top-level directory, or modify
+      the default value in `backup.sh`.
 
    2. I use a more up-to-date build of `sqlite3` at `/usr/local/bin/sqlite3`.
       If you use the system version at `/usr/bin/sqlite3`, just delete the
@@ -87,7 +89,7 @@ If this is an issue, you might consider modifying the script to use
       (`-mtime +14`). Adjust this if needed.
 
 4. Install the crontab under a user (typically your normal login) that can
-   read your bitwarden_rs data. For most users, running `crontab -e` and
+   read your Vaultwarden data. For most users, running `crontab -e` and
    pasting in the contents of the crontab file should work.
 
 5. If you use GnuPG 2.1 or later, see the note about `--pinentry-mode loopback`
@@ -101,12 +103,12 @@ If everything is working properly, you should see the following:
 
 For example:
 ```
-$HOME/bwrs/backup
+$HOME/vaultwarden/backup
 ├── archives
-│   ├── bitwarden-20210101-0000.tar.xz
-│   ├── bitwarden-20210101-0000.tar.xz.gpg
-│   ├── bitwarden-20210101-0100.tar.xz
-│   ├── bitwarden-20210101-0100.tar.xz.gpg
+│   ├── vaultwarden-20210101-0000.tar.xz
+│   ├── vaultwarden-20210101-0000.tar.xz.gpg
+│   ├── vaultwarden-20210101-0100.tar.xz
+│   ├── vaultwarden-20210101-0100.tar.xz.gpg
 │   └── ...
 ├── backup.conf
 ├── backup.conf.template
