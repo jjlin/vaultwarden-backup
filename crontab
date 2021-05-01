@@ -1,5 +1,8 @@
 # Backup Vaultwarden data hourly.
-@hourly SQLITE3=/usr/local/bin/sqlite3 ${HOME}/vaultwarden/backup/backup.sh >${HOME}/vaultwarden/backup/backup.log 2>&1
+@hourly ${HOME}/vaultwarden/backup/backup.sh >${HOME}/vaultwarden/backup/backup.log 2>&1
 
 # Purge old local backups.
 @daily find "${HOME}/vaultwarden/backup/archives" -name 'vaultwarden-*.tar.*' -mtime +14 -delete
+
+# Vacuum the database weekly.
+5 5 * * Sun sqlite3 ${HOME}/vaultwarden/data/db.sqlite3 VACUUM

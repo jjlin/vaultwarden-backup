@@ -72,21 +72,18 @@ If this is an issue, you might consider modifying the script to use
 
 3. Modify the `backup/crontab` file as needed.
 
-   1. If `$HOME/vaultwarden` isn't your top-level Vaultwarden directory,
-      adjust the paths in this file accordingly. You would also need to set
-      the `VAULTWARDEN_ROOT` variable to your top-level directory, or modify
-      the default value in `backup.sh`.
+   1. If `$HOME/vaultwarden` isn't your top-level Vaultwarden directory, adjust
+      the paths in this file accordingly.
 
-   2. I use a more up-to-date build of `sqlite3` at `/usr/local/bin/sqlite3`.
-      If you use the system version at `/usr/bin/sqlite3`, just delete the
-      `SQLITE3=/usr/local/bin/sqlite3` part of the first cron job. See the
-      top of `backup.sh` for some other variables that you can set (or not).
-
-   3. Review the backup schedule. I generate backup archives hourly, but you
+   2. Review the backup schedule. I generate backup archives hourly, but you
       might prefer to do this less frequently to save space.
 
-   4. Review the local retention policy. I delete files older than 14 days
+   3. Review the local retention policy. I delete files older than 14 days
       (`-mtime +14`). Adjust this if needed.
+
+   4. Review the SQLite [VACUUM](https://sqlite.org/lang_vacuum.html) schedule,
+      or remove the job if you don't want vacuuming. Vacuuming compacts the
+      database file so that operations are faster and backups are smaller.
 
 4. Install the crontab under a user (typically your normal login) that can
    read your Vaultwarden data. For most users, running `crontab -e` and
@@ -105,11 +102,11 @@ For example:
 ```
 $HOME/vaultwarden/backup
 ├── archives
-│   ├── vaultwarden-20210101-0000.tar.xz
-│   ├── vaultwarden-20210101-0000.tar.xz.gpg
-│   ├── vaultwarden-20210101-0100.tar.xz
-│   ├── vaultwarden-20210101-0100.tar.xz.gpg
-│   └── ...
+│   ├── vaultwarden-20210101-0000.tar.xz
+│   ├── vaultwarden-20210101-0000.tar.xz.gpg
+│   ├── vaultwarden-20210101-0100.tar.xz
+│   ├── vaultwarden-20210101-0100.tar.xz.gpg
+│   └── ...
 ├── backup.conf
 ├── backup.conf.template
 ├── backup.log
