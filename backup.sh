@@ -4,7 +4,7 @@ set -ex
 
 # Use the value of the corresponding environment variable, or the
 # default if none exists.
-: ${VAULTWARDEN_ROOT:="$(cd "$(dirname $0)/.." && pwd)"}
+: ${VAULTWARDEN_ROOT:="$(realpath "${0%/*}"/..)"}
 : ${SQLITE3:="/usr/bin/sqlite3"}
 : ${RCLONE:="/usr/local/bin/rclone"}
 
