@@ -67,8 +67,18 @@ If this is an issue, you might consider modifying the script to use
       plaintext, it definitely should not be your Bitwarden master passphrase
       or anything similar.
 
+      [rclone crypt](https://rclone.org/crypt/) is another option for encrypted
+      archives. If you prefer to use this method, just set `GPG_PASSPHRASE` to
+      be blank, configure rclone crypt appropriately, and use the crypt remote
+      in `RCLONE_DESTS`.
+
    2. Change `RCLONE_DESTS` to your list of rclone destinations. You'll have
       to [configure](https://rclone.org/docs/) rclone appropriately first.
+
+   3. Note that `backup.conf` is simply sourced into the `backup.sh` script, so
+      you can add arbitrary environment variables into `backup.conf` as needed.
+      This can be useful for configuring any tools called from `backup.sh`,
+      such as `rclone`.
 
 3. Modify the `backup/crontab` file as needed.
 
