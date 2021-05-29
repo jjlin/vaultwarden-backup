@@ -32,17 +32,23 @@ If this is an issue, you might consider modifying the script to use
    backup actions on a scheduled basis.
 
 3. An `sqlite3` binary (https://sqlite.org/cli.html). This is used to back up
-   the SQLite database.
+   the SQLite database. This can be installed via the `sqlite3` package on
+   Debian/Ubuntu or the `sqlite` package on RHEL/CentOS/Fedora.
 
 4. An `rclone` binary (https://rclone.org/). This is used to copy the backup
-   archives to cloud storage.
+   archives to cloud storage. This can be installed via the `rclone` package
+   on Debian/Ubuntu and RHEL/CentOS/Fedora ([EPEL](https://fedoraproject.org/wiki/EPEL)
+   required for RHEL/CentOS), but as rclone changes more rapidly, it's probably
+   best to just use the latest binary from https://rclone.org/downloads/.
 
 5. An account at one or more cloud storage services
    [supported](https://rclone.org/overview/) by rclone. If you don't have one
    yet, [Backblaze B2](https://www.backblaze.com/b2/cloud-storage.html)
    offers 10 GB of free object storage.
 
-6. Optionally, a `gpg` (GnuPG 2.x) binary (https://gnupg.org/).
+6. Optionally, a `gpg` (GnuPG 2.x) binary (https://gnupg.org/). This can be
+   installed via the `gnupg` package on Debian/Ubuntu or the `gnupg2` package
+   on RHEL/CentOS/Fedora.
 
 ## Usage
 
