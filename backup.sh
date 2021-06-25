@@ -62,6 +62,9 @@ if [[ -n ${GPG_PASSPHRASE} ]]; then
     sha1sum "${BACKUP_FILE_PATH}"
 fi
 
+# Attempt uploading to all remotes, even if some fail.
+set +e
+
 for dest in "${RCLONE_DESTS[@]}"; do
     ${RCLONE} -vv --no-check-dest copy "${BACKUP_FILE_PATH}" "${dest}"
 done
