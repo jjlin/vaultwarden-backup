@@ -40,7 +40,7 @@ until ${SQLITE3} "file:${DATA_DIR}/${DB_FILE}?mode=ro" ".backup '${BACKUP_DIR_PA
 done
 
 backup_files=()
-for f in attachments config.json rsa_key.der rsa_key.pem rsa_key.pub.der sends; do
+for f in attachments config.json rsa_key.der rsa_key.pem rsa_key.pub.der rsa_key.pub.pem sends; do
     if [[ -e "${DATA_DIR}"/$f ]]; then
         backup_files+=("${DATA_DIR}"/$f)
     fi
