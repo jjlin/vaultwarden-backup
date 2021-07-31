@@ -4,5 +4,7 @@
 # Purge old local backups.
 @daily find "${HOME}/vaultwarden/backup/archives" -name 'vaultwarden-*.tar.*' -mtime +14 -delete
 
-# Vacuum the database weekly.
-5 5 * * Sun sqlite3 ${HOME}/vaultwarden/data/db.sqlite3 VACUUM
+# Vacuum the database daily at 3:30 am.
+# This avoids contention with other scheduled jobs that run at
+# :00 minutes (backups) or :05 minutes (e.g., trash/send purging).
+30 3 * * * sqlite3 ${HOME}/vaultwarden/data/db.sqlite3 VACUUM
