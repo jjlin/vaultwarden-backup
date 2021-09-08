@@ -7,6 +7,8 @@ set -ex
 : ${VAULTWARDEN_ROOT:="$(realpath "${0%/*}"/..)"}
 : ${SQLITE3:="/usr/bin/sqlite3"}
 : ${RCLONE:="/usr/local/bin/rclone"}
+: ${GPG:="/usr/bin/gpg"}
+: ${AGE:="/usr/local/bin/age"}
 
 DATA_DIR="data"
 BACKUP_ROOT="${VAULTWARDEN_ROOT}/backup"
@@ -55,9 +57,16 @@ if [[ -n ${GPG_PASSPHRASE} ]]; then
     # https://gnupg.org/documentation/manuals/gnupg/GPG-Esoteric-Options.html
     # Note: Add `--pinentry-mode loopback` if using GnuPG 2.1.
     printf '%s' "${GPG_PASSPHRASE}" |
-    gpg -c --cipher-algo "${GPG_CIPHER_ALGO}" --batch --passphrase-fd 0 "${BACKUP_FILE_PATH}"
+    ${GPG} -c --cipher-algo "${GPG_CIPHER_ALGO}" --batch --passphrase-fd 0 "${BACKUP_FILE_PATH}"
     BACKUP_FILE_NAME+=".gpg"
     BACKUP_FILE_PATH+=".gpg"
+    md5sum "${BACKUP_FILE_PATH}"
+    sha1sum "${BACKUP_FILE_PATH}"
+elif [[ -n ${AGE_PASSPHRASE} ]]; then
+    export AGE_PASSPHRASE
+    ${AGE} -p -o "${BACKUP_FILE_PATH}.age" "${BACKUP_FILE_PATH}"
+    BACKUP_FILE_NAME+=".age"
+    BACKUP_FILE_PATH+=".age"
     md5sum "${BACKUP_FILE_PATH}"
     sha1sum "${BACKUP_FILE_PATH}"
 fi

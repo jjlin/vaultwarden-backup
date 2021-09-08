@@ -1,7 +1,17 @@
 #!sh
 
+#
+# Encryption options for GnuPG (https://www.gnupg.org/)
+# Uncomment to enable GnuPG encryption.
+#
 GPG_CIPHER_ALGO=AES128
 GPG_PASSPHRASE='hunter2'
+
+#
+# Encryption options for age (https://github.com/FiloSottile/age)
+# Uncomment to enable age encryption.
+#
+# AGE_PASSPHRASE='hunter2'
 
 RCLONE_DESTS=(
     # Backblaze B2 (https://rclone.org/b2/)

@@ -52,6 +52,10 @@ If this is an issue, you might consider modifying the script to use
    installed via the `gnupg` package on Debian/Ubuntu or the `gnupg2` package
    on RHEL/CentOS/Fedora.
 
+7. Optionally, an `age` binary (https://github.com/FiloSottile/age). This option
+   requires a [custom version](https://github.com/jjlin/age/tree/passphrase-from-env)
+   of the tool that supports reading the passphrase from an environment variable.
+
 ## Usage
 
 1. Start by cloning this repo to the directory containing your Vaultwarden
@@ -63,8 +67,11 @@ If this is an issue, you might consider modifying the script to use
 
 2. Copy the `backup.conf.template` file to `backup.conf`.
 
-   1. If you want encrypted backup archives, change the `GPG_PASSPHRASE`
-      variable; if you don't, change it to be blank.
+   1. If you want encrypted backup archives using `gpg`, set the
+      `GPG_PASSPHRASE` variable accordingly. If you want to encrypt using
+      `age` instead, set the `AGE_PASSPHRASE` variable. If both variables are
+      set, only `gpg` encryption will be performed. If you don't want
+      encryption at all, comment out both variables or set them to be blank.
 
       This passphrase is used to encrypt the backup archives, which may
       contain somewhat sensitive data in plaintext in `config.json` (the
