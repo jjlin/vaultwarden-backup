@@ -111,8 +111,14 @@ If this is an issue, you might consider modifying the script to use
       database file so that operations are faster and backups are smaller.
 
 4. Install the crontab under a user (typically your normal login) that can
-   read your Vaultwarden data. For most users, running `crontab -e` and
-   pasting in the contents of the crontab file should work.
+   read your Vaultwarden data. In many cases, running `crontab -e` and
+   pasting in the contents of the crontab file should work. Note that if
+   your cron user doesn't have write permissions to the database, then you
+   must ensure it has write permissions to the Vaultwarden data directory,
+   as SQLite may need to create a `-wal` file for the database if it doesn't
+   already exist. If it's unable to do this, the backup will fail with an
+   `attempt to write a readonly database` error. (For more details, see
+   https://sqlite.org/wal.html#read_only_databases.)
 
 5. If you use GnuPG 2.1 or later, see the note about `--pinentry-mode loopback`
    in `backup.sh`.
