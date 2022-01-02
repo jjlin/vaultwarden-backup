@@ -16,7 +16,11 @@ general purpose):
    storage services using [rclone](https://rclone.org/). The retention policy
    is configured at the storage service level.
 
-Feel free to use or modify this setup to fit your own needs.
+For the most part, I'm not looking for contributions or feature requests, as
+this repo is only intended to implement my own backup requirements. I may be
+willing to make some minor generalizations to make it easier for people to
+use the repo without modification, but aside from that, feel free to fork and
+modify this setup to fit your own needs.
 
 Note: This single-archive backup scheme isn't space-efficient if your vault
 includes large file attachments, as they will be re-uploaded with each backup.
