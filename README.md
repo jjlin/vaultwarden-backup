@@ -49,13 +49,14 @@ If this is an issue, you might consider modifying the script to use
    [supported](https://rclone.org/overview/) by rclone. If you don't have one
    yet, here are a few cloud storage services that offer a free tier:
 
-   * [Backblaze B2](https://www.backblaze.com/b2/cloud-storage.html) -- 10 GB
-   * [Box](https://www.box.com/pricing/individual) -- 10 GB
-   * [Dropbox](https://www.dropbox.com/basic) -- 2 GB
-   * [Google Drive](https://www.google.com/drive/) -- 15 GB
-   * [Microsoft OneDrive](https://www.microsoft.com/en-us/microsoft-365/onedrive/online-cloud-storage) -- 5 GB
-   * [Oracle Cloud](https://www.oracle.com/cloud/free/) -- 10 GB
-   * [Storj](https://storj.io/) -- 150 GB
+   * [Backblaze B2](https://www.backblaze.com/b2/cloud-storage.html) (10 GB)
+   * [Box](https://www.box.com/pricing/individual) (10 GB)
+   * [Dropbox](https://www.dropbox.com/basic) (2 GB)
+   * [Google Drive](https://www.google.com/drive/) (15 GB)
+   * [IDrive e2](https://www.idrive.com/e2/) (10 GB)
+   * [Microsoft OneDrive](https://www.microsoft.com/en-us/microsoft-365/onedrive/online-cloud-storage) (5 GB)
+   * [Oracle Cloud](https://www.oracle.com/cloud/free/) (10 GB)
+   * [Storj](https://storj.io/) (150 GB)
 
 6. Optionally, a `gpg` (GnuPG 2.x) binary (https://gnupg.org/). This can be
    installed via the `gnupg` package on Debian/Ubuntu or the `gnupg2` package
