@@ -53,7 +53,7 @@ If this is an issue, you might consider modifying the script to use
    * [Box](https://www.box.com/pricing/individual) (10 GB)
    * [Dropbox](https://www.dropbox.com/basic) (2 GB)
    * [Google Drive](https://www.google.com/drive/) (15 GB)
-   * [IDrive e2](https://www.idrive.com/e2/) (10 GB)
+   * [IDrive e2](https://www.idrive.com/e2/) (10 GB) -- must configure rclone remote with `no_check_bucket = true`
    * [Microsoft OneDrive](https://www.microsoft.com/en-us/microsoft-365/onedrive/online-cloud-storage) (5 GB)
    * [Oracle Cloud](https://www.oracle.com/cloud/free/) (10 GB)
    * [Storj](https://storj.io/) (150 GB)
