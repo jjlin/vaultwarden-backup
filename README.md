@@ -16,6 +16,12 @@ general purpose):
    storage services using [rclone](https://rclone.org/). The retention policy
    is configured/managed at the storage service level.
 
+4. Return success when all backup archives are successfully uploaded,
+   or failure if any uploads fail. This allows cron monitoring services like
+   [Healthchecks.io](https://healthchecks.io/), [Cronitor](https://cronitor.io/),
+   or [Dead Man’s Snitch](https://deadmanssnitch.com/) to provide notification
+   of backup failures.
+
 For the most part, I'm not looking for contributions or feature requests, as
 this repo is only intended to implement my own backup requirements. I may be
 willing to make some minor generalizations to make it easier for people to
