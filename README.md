@@ -57,6 +57,7 @@ If this is an issue, you might consider modifying the script to use
 
    * [Backblaze B2](https://www.backblaze.com/b2/cloud-storage.html) (10 GB)
    * [Box](https://www.box.com/pricing/individual) (10 GB)
+   * [Cloudflare R2](https://www.cloudflare.com/products/r2/) (10 GB)
    * [Dropbox](https://www.dropbox.com/basic) (2 GB)
    * [Google Drive](https://www.google.com/drive/) (15 GB)
    * [IDrive e2](https://www.idrive.com/e2/) (10 GB) -- must configure rclone remote with `no_check_bucket = true`
