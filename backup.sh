@@ -27,19 +27,16 @@ mkdir -p "${BACKUP_DIR_PATH}"
 # Back up the database using the Online Backup API (https://www.sqlite.org/backup.html)
 # as implemented in the SQLite CLI. However, if a call to sqlite3_backup_step() returns
 # one of the transient errors SQLITE_BUSY or SQLITE_LOCKED, the CLI doesn't retry the
-# backup step; instead, it simply stops the backup and returns an error. This is unlikely,
-# but to minimize the possibility of a failed backup, implement a retry mechanism here.
-max_tries=10
-tries=0
-until ${SQLITE3} "file:${DATA_DIR}/${DB_FILE}?mode=ro" ".backup '${BACKUP_DIR_PATH}/${DB_FILE}'"; do
-    if (( ++tries >= max_tries )); then
-	echo "Aborting after ${max_tries} failed backup attempts..."
-	exit 1
-    fi
-    echo "Backup failed. Retry #${tries}..."
-    rm -f "${BACKUP_DIR_PATH}/${DB_FILE}"
-    sleep 1
-done
+# backup step by default; instead, it stops the backup immediately and returns an error.
+#
+# Encountering this situation is unlikely, but to be on the safe side, the CLI can be
+# configured to retry by using the `.timeout <ms>` meta command to set a busy handler
+# (https://www.sqlite.org/c3ref/busy_timeout.html), which will keep trying to open a
+# locked table until the timeout period elapses.
+busy_timeout=30000 # in milliseconds
+${SQLITE3} -cmd ".timeout ${busy_timeout}" \
+           "file:${DATA_DIR}/${DB_FILE}?mode=ro" \
+           ".backup '${BACKUP_DIR_PATH}/${DB_FILE}'"
 
 backup_files=()
 for f in attachments config.json rsa_key.der rsa_key.pem rsa_key.pub.der rsa_key.pub.pem sends; do
