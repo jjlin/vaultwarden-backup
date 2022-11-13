@@ -112,7 +112,13 @@ If this is an issue, you might consider modifying the script to use
       This can be useful for configuring any tools called from `backup.sh`,
       such as `rclone`.
 
-3. Modify the `backup/crontab` file as needed.
+3. Modify the `backup/crontab` file as needed. This crontab actually calls
+   `cron.sh` to run the backup, rather than calling `backup.sh` directly.
+   Currently, `cron.sh` captures the output of the current run of `backup.sh`
+   to a `backup.log` file. It also saves a copy of this log file, named
+   according to whether the backup run was a success or failure. You can add
+   other custom logic to `cron.sh` if needed, such as signaling failure to a
+   cron monitoring service.
 
    1. If `$HOME/vaultwarden` isn't your top-level Vaultwarden directory, adjust
       the paths in this file accordingly.
@@ -120,10 +126,13 @@ If this is an issue, you might consider modifying the script to use
    2. Review the backup schedule. I generate backup archives hourly, but you
       might prefer to do this less frequently to save space.
 
-   3. Review the local retention policy. I delete files older than 14 days
-      (`-mtime +14`). Adjust this if needed.
+   3. Review the local backup archive retention policy. I delete archives
+      older than 14 days (`-mtime +14`). Adjust this if needed.
 
-   4. Review the SQLite [VACUUM](https://sqlite.org/lang_vacuum.html) schedule,
+   4. Review the log file retention policy. I delete log files older than
+      14 days (`-mtime +14`). Adjust this if needed.
+
+   5. Review the SQLite [VACUUM](https://sqlite.org/lang_vacuum.html) schedule,
       or remove the job if you don't want vacuuming. Vacuuming compacts the
       database file so that operations are faster and backups are smaller.
 
@@ -145,6 +154,7 @@ If everything is working properly, you should see the following:
 1. Backup archives generated under `backup/archives`.
 2. Encrypted backup archives uploaded to your configured rclone destination(s).
 3. A log of the last backup at `backup/backup.log`.
+4. Copies of the backup logs saved to `backup/logs`.
 
 For example:
 ```
@@ -159,7 +169,13 @@ $HOME/vaultwarden/backup
 ├── backup.conf.template
 ├── backup.log
 ├── backup.sh
+├── cron.sh
 ├── crontab
+├── logs
+│   ├── backup-success-20210101-0000.log
+│   ├── backup-success-20210101-0100.log
+│   ├── backup-failure-20210101-0200.log
+│   └── ...
 ├── LICENSE
 └── README.md
 ```

@@ -12,7 +12,8 @@ set -ex
 
 DATA_DIR="data"
 BACKUP_ROOT="${VAULTWARDEN_ROOT}/backup"
-BACKUP_DIR_NAME="vaultwarden-$(date '+%Y%m%d-%H%M')"
+BACKUP_TIMESTAMP="$(date '+%Y%m%d-%H%M')"
+BACKUP_DIR_NAME="vaultwarden-${BACKUP_TIMESTAMP}"
 BACKUP_DIR_PATH="${BACKUP_ROOT}/${BACKUP_DIR_NAME}"
 BACKUP_FILE_DIR="archives"
 BACKUP_FILE_NAME="${BACKUP_DIR_NAME}.tar.xz"
