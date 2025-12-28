@@ -67,9 +67,13 @@ If this is an issue, you might consider modifying the script to use
    installed via the `gnupg` package on Debian/Ubuntu or the `gnupg2` package
    on RHEL/CentOS/Fedora.
 
-7. Optionally, an `age` binary (https://github.com/FiloSottile/age). This option
-   requires a [custom version](https://github.com/jjlin/age/tree/passphrase-from-env)
-   of the tool that supports reading the passphrase from an environment variable.
+7. Optionally, an `age` binary (https://github.com/FiloSottile/age).
+   This option requires age v1.3.0 or later, which includes the
+   [`batchpass`](https://htmlpreview.github.io/?https://github.com/FiloSottile/age/blob/main/doc/age-plugin-batchpass.1.html)
+   plugin that allows reading the passphrase from an environment variable.
+   Note that the `age-plugin-batchpass` binary must reside somewhere along
+   your environment's `PATH`, as `age` does not seem to provide a way to
+   specify the absolute path to a plugin.
 
 ## Usage
 

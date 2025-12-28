@@ -62,7 +62,7 @@ if [[ -n ${GPG_PASSPHRASE} ]]; then
     sha1sum "${BACKUP_FILE_PATH}"
 elif [[ -n ${AGE_PASSPHRASE} ]]; then
     export AGE_PASSPHRASE
-    ${AGE} -p -o "${BACKUP_FILE_PATH}.age" "${BACKUP_FILE_PATH}"
+    ${AGE} -e -j batchpass -o "${BACKUP_FILE_PATH}.age" "${BACKUP_FILE_PATH}"
     BACKUP_FILE_NAME+=".age"
     BACKUP_FILE_PATH+=".age"
     md5sum "${BACKUP_FILE_PATH}"
